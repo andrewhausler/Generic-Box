@@ -4,7 +4,7 @@ public abstract class Box<Type extends Comparable<Type>>
 {
     private int width; // width is equal to rows
     private int height; // height is equal to columns
-    private ArrayList<ArrayList<Type>> box;
+    private ArrayList<ArrayList<Type>> box = new ArrayList<ArrayList<Type>>();
     
     /**
      * Sets the size of the box and each index is set to null
@@ -19,10 +19,10 @@ public abstract class Box<Type extends Comparable<Type>>
         }
         this.height = height;
         this.width = width;
-        for(int i=0; i<width; i++)
+        for(int i=0; i<height; i++)
         {
             box.add(new ArrayList<Type>());
-            for(int j=0; j<height; j++)
+            for(int j=0; j<width; j++)
             {
                 box.get(i).add(null);
             }
@@ -58,7 +58,7 @@ public abstract class Box<Type extends Comparable<Type>>
     {
         try
         {
-            box.get(row).add(column, value);
+            box.get(row).set(column, value);
         }
         catch(IndexOutOfBoundsException ex)
         {
@@ -70,7 +70,7 @@ public abstract class Box<Type extends Comparable<Type>>
     {
         for(int i=0; i<box.size(); i++)
         {
-            for(int j=0; j<box.get(i).size(); i++)
+            for(int j=0; j<box.get(i).size(); j++)
             {
                 if(box.get(i).get(j) == null)
                 {
@@ -80,7 +80,9 @@ public abstract class Box<Type extends Comparable<Type>>
                 {
                     System.out.print(box.get(i).get(j));
                 }
+                System.out.print(" ");
             }
+            System.out.println();
         }
     }
 }
